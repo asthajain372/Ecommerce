@@ -15,18 +15,10 @@ const {getorders} = require('./controllers/ordercontroller');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
-const Productmodel = require('./db/Product');
-
-
-
-
-
-
-
-
-
-
 console.log(process.env.REACT_APP_SITE_URL);
+
+const port = process.env.PORT ;
+
 // const stripe = require("./controllers/stripe");
 // const stripe = require("stripe")("sk_test_51OA4XLSB2fKJnUAPOWQ53NySJjzlCnMWptImrCkDWDmu2kCtyMASJkUTBdr45BIy0RBPhDfvka65Rkf4UbvdFo8y00qFumXTyG");
 
@@ -93,4 +85,6 @@ app.get('/singleproduct/:id',getsingleproduct);
 app.put('/update/:newid', upload.single('file')  , updateproduct);
 app.post('/api/create-checkout-session', paymethod);
 app.get('/order/success', orderdata );
-app.listen(4500);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
