@@ -1,16 +1,17 @@
 
+require('dotenv').config(); 
 const usermodel = require('../db/User');
 const Jwt = require('jsonwebtoken');
-const jwtkey = 'e-comm';
+const jwtkey = process.env.JWT_KEY;
 const bcrypt = require('bcrypt');
 const rolemodel = require('../db/Roles');
 
 async function signup(req, res) {
+    console.log(usermodel);
     const { name, email, password } = req.body;
     const type = req.body.type || 'Buyer';
     console.log("type", type);
-    const roles = [type]
-    //  const data = req.body; // Removed await since req.body is not a promise
+    const roles = [type];
     console.log(roles);
   
     try {

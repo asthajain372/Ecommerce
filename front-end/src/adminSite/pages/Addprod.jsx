@@ -12,9 +12,6 @@ const Addprod = () => {
 
   const [prodata, setprodata] = useState([]);
 
-  
-
-
   const dispatch = useDispatch();
   const param = useParams();
 
@@ -37,7 +34,6 @@ const Addprod = () => {
     const file = e.target.files[0];
     setimage(file);
     setImageChanged(true);
-    // seturl(image.name); // Signal that image has changed
   };
 
   useEffect(() => {
@@ -48,11 +44,7 @@ const Addprod = () => {
   }, [image, imageChanged])
 
   async function handledata() {
-    // console.log(image.name);
-    // console.log( name , image ,desc , newcolor , newsize);
-    //  const file =  image.name;
     const file = Date.now() + image.name;
-    //  console.log(prize);
     const formdata = new FormData();
     formdata.append('type', type);
     formdata.append('name', name);
@@ -62,9 +54,7 @@ const Addprod = () => {
 
     newcolor.forEach((color, index) => {
       formdata.append('color', color);
-    })
-    // formdata.append('color', newcolor);
-    // formdata.append('size', newsize);
+    });
     newsize.forEach((size, index) => {
       formdata.append('size', size);
     });

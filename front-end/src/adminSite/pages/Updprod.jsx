@@ -9,8 +9,6 @@ import { Link } from 'react-router-dom';
 
 const Updprod = () => {
   const SITE_URL = process.env.REACT_APP_SITE_URL;
-  // const SITE_URL = process.env.SITE_URL;
-  // const SITE_URL = import.meta.env.SITE_URL;
 
   console.log("SITE_URL" , SITE_URL);
   console.log("hello");
@@ -18,11 +16,6 @@ const Updprod = () => {
   const [prodata , setprodata] = useState([]);
 
   useEffect(()=>{
-
-
-
-
-
     async function fetchsingle (){
       const single_product = await fetch(`${process.env.REACT_APP_SITE_URL}/singleproduct/${param._id}`)
       const data = await single_product.json();
@@ -55,13 +48,10 @@ const Updprod = () => {
   const [url, seturl] = useState('');
   const [imageChanged, setImageChanged] = useState(false);
   
-  // console.log("prodata", prodata);
-  // console.log("prodataname", name);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setimage(file);
     setImageChanged(true);
-    // seturl(image.name); // Signal that image has changed
   };
 
   useEffect(() => {

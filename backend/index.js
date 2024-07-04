@@ -15,6 +15,16 @@ const {getorders} = require('./controllers/ordercontroller');
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
+const Productmodel = require('./db/Product');
+
+
+
+
+
+
+
+
+
 
 console.log(process.env.REACT_APP_SITE_URL);
 // const stripe = require("./controllers/stripe");
@@ -48,6 +58,29 @@ app.get('/',async(req , res)=>{
 
 // app.use("/stripe", stripe);
 // app.post('/stripe/create-checkout-session',checkout);
+
+
+
+
+// const productSchema = new mongoose.Schema({
+//   name: { type: String, required: true }
+//   // add other fields as necessary
+// });
+
+// const Productss = mongoose.model('test', productSchema);
+
+
+
+// app.get('/products', async (req, res) => {
+//   try {
+//     const products = await Productss.find({});
+//     res.json(products);
+//   } catch (error) {
+//     res.status(500).send('Error retrieving products');
+//   }
+// });
+
+
 
 app.post('/signup' , signup );
 app.post('/login' , login );

@@ -1,4 +1,5 @@
 const { default: mongoose } = require("mongoose");
+require('./config');
 
 const productschema = mongoose.Schema({
     name:{type:String},
@@ -16,7 +17,8 @@ const productschema = mongoose.Schema({
         default:[]
     },
     prize:{type:String}
-});
+}, { collection: 'products' });
+
 
 module.exports = mongoose.model('Products' , productschema);
 

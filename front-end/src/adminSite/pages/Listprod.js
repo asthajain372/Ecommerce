@@ -13,9 +13,6 @@ import { Link } from 'react-router-dom'
 
 const Listprod = () => {
   const dispatch = useDispatch();
-  // const param = useParams();
-  // const singledata = useSelector((state) => state.productSlice.singleProduct);
-  // const singleproduct = singledata.filter(data => data._id === param.id)
 
   const [pro_list, setpro_list] = useState([]);
   const [search, setsearch] = useState('');
@@ -27,7 +24,6 @@ const Listprod = () => {
     console.log("data", data);
 
     const productData = localStorage.getItem('productdata');
-    // const parsedProductData = JSON.parse(productData);
     console.log("parsedProductData" , JSON.parse(productData));
 
     setfiltered(data);
@@ -40,11 +36,9 @@ const Listprod = () => {
 
 
   useEffect(() => {
-    // const filtered_data  = pro_list.filter(data =>  data._id.match(search));
     const filtered_data = pro_list.filter(data => data.name.toLowerCase().match(search.toLowerCase()));
     console.log(filtered_data);
     setfiltered(filtered_data);
-    // filtered_data();
   }, [search])
 
   function downloadXLS() {
@@ -114,9 +108,6 @@ const Listprod = () => {
         <Link style={{ textDecoration: 'none' }} to={`/Updprod/${row._id}`} >
         <Button > Edit </Button>
       </Link>
-      //   <Link style={{ textDecoration: 'none' }} to={`/Updprod/${row._id}`} >
-      //   <Button onClick={() => dispatch(singlereducer(row._id))} > Edit </Button>
-      // </Link>
       )
     },
     {

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+// require('./db/config');
 
 const orderSchema = new mongoose.Schema({
     user: {

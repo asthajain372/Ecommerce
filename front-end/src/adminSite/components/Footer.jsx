@@ -5,14 +5,11 @@ const Footer = () => {
     <div>
         {/* ======= Footer ======= */}
   <footer id="footer" className="footer">
-    {/* <div className="copyright">
-      © Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
-    </div> */}
     <div className="credits">
-      Designed by <a href="https://bootstrapmade.com/">Astha jain</a>
+      Designed by <a href=''>Astha jain</a>
     </div>
 
-  </footer>{/* End Footer */}
+  </footer>
     </div>
   )
 }
