@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
 import CloseIcon from '@mui/icons-material/Close';
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
@@ -10,10 +8,7 @@ const Addprod = () => {
 
   const SITE_URL = process.env.REACT_APP_SITE_URL;
 
-  const [prodata, setprodata] = useState([]);
 
-  const dispatch = useDispatch();
-  const param = useParams();
 
   const [name, setname] = useState('');
   const [desc, setdesc] = useState('');
@@ -27,9 +22,6 @@ const Addprod = () => {
   const [url, seturl] = useState('');
   const [imageChanged, setImageChanged] = useState(false);
 
-
-  // console.log("prodata", prodata);
-  // console.log("prodataname", name);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setimage(file);

@@ -6,7 +6,7 @@ const Footer = () => {
         {/* ======= Footer ======= */}
   <footer id="footer" className="footer">
     <div className="credits">
-      Designed by <a href=''>Astha jain</a>
+      Designed by <a>Astha jain</a>
     </div>
 
   </footer>

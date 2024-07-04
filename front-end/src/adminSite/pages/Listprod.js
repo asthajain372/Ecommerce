@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import Export from "react-data-table-component"
+import { useDispatch } from 'react-redux';
 import Header from '../components/Header'
 import Sidebar from '../components/Sidebar'
 import Footer from '../components/Footer'
@@ -12,7 +11,6 @@ import { Link } from 'react-router-dom'
 
 
 const Listprod = () => {
-  const dispatch = useDispatch();
 
   const [pro_list, setpro_list] = useState([]);
   const [search, setsearch] = useState('');
@@ -39,7 +37,7 @@ const Listprod = () => {
     const filtered_data = pro_list.filter(data => data.name.toLowerCase().match(search.toLowerCase()));
     console.log(filtered_data);
     setfiltered(filtered_data);
-  }, [search])
+  }, [search]);
 
   function downloadXLS() {
     const ws = XLSX.utils.json_to_sheet(filtered);

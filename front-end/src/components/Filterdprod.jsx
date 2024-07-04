@@ -1,11 +1,8 @@
 import React from 'react'
-import { UseSelector, useDispatch, useSelector } from 'react-redux'
-import { Card, Button } from 'react-bootstrap';
-// import { storeData } from '../../assets/data/dummyData';
-import { storeData } from '../assets/data/dummyData';
+import {  useDispatch, useSelector } from 'react-redux'
+import { Card } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { singlereducer } from '../features/slice/productSlice';
-import RightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import '../App.css'
 const Filterdprod = () => {
     const dispatch = useDispatch();

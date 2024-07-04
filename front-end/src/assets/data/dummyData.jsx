@@ -39,7 +39,6 @@ import jeans2 from "../images/jeans2.jpg";
 import jeans3 from "../images/jeans3.jpg";
 import jeans4 from "../images/jeans4.jpg";
 import jeans5 from "../images/jeans5.jpg";
-import jeans6 from "../images/jeans6.jpg";
 import jeans7 from "../images/jeans7.jpg";
 import jeans8 from "../images/jeans8.jpg";
 import jacket1 from "../images/jacket1.jpg";

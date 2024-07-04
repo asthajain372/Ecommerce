@@ -1,15 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import logo from './logo.svg';
-import { Link } from "react-router-dom";
 import './App.css';
-import ReactDOM from "react-dom/client";
 import Navbar from './components/Navbar';
 import Products from './pages/Products';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Protected from './pages/Protected';
 import Singleprod from './components/Singleprod';
-// import Filterdprod from './components/Filterdprod';
 import Cartpage from './pages/Cartpage';
 import Profile from './pages/Profile';
 import Order from './pages/Order';
