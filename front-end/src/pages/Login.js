@@ -33,9 +33,9 @@ async function handledata(){
     // localStorage.setItem('user',JSON.stringify(data.existinguser) );
     console.log(data.existinguser.roles[0].roles);
     if(data.existinguser.roles[0].roles == 'Buyer'){
-      navigate('/');
+      navigate('/product');
     }else{
-      navigate('/Listprod');
+      navigate('/admin/Dashboard');
     }
    }
 }

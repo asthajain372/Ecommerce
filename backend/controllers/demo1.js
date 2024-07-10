@@ -290,6 +290,34 @@ const customOrderchart = async (req, res) => {
 
 
 
+
+const generate_LabelsPrize = (range) => {
+  const labels = [];
+  const now = moment();
+
+  switch (range) {
+    case 'day':
+      for (let i = 11; i >= 0; i--) {
+        labels.push(now.clone().subtract(i, 'days').format('YYYY-MM-DD'));
+      }
+      break;
+    case 'week':
+      for (let i = 11; i >= 0; i--) {
+        labels.push(`week-${now.clone().subtract(i, 'weeks').format('W-YYYY')}`);
+      }
+      break;
+    case 'month':
+      for (let i = 11; i >= 0; i--) {
+        labels.push(now.clone().subtract(i, 'months').format('MMM-YYYY'));
+      }
+      break;
+    default:
+      break;
+  }
+
+  return labels;
+};
+
 const calculateTotalPrice = async (req, res) => {
   try {
     const { range } = req.params;
@@ -308,66 +336,37 @@ const calculateTotalPrice = async (req, res) => {
       labels = generateLabels(range);
     }
 
+    
     const orders = await ordermodel.find({
       createdAt: {
-        $gte: startDate,
-        $lt: endDate,
+        $gte: range === 'day' ? moment().subtract(12, 'days').toDate() :
+               range === 'week' ? moment().subtract(12, 'weeks').toDate() :
+               range === 'month' ? moment().subtract(12, 'months').toDate() : new Date(),
+        $lt: new Date(),
       },
     });
 
-    if (!start && !end) {
-      const mappedData = labels.reduce((acc, label) => {
-        acc[label] = 0;
-        return acc;
-      }, {});
+    const mappedData = labels.reduce((acc, label) => {
+      acc[label] = 0;
+      return acc;
+    }, {});
 
-      // console.log("mappedData", mappedData);
+    orders.forEach((order) => {
+      const orderDate = moment(order.createdAt);
+      const label = range === 'day' ? orderDate.format('YYYY-MM-DD') :
+                    range === 'week' ? `week-${orderDate.format('W-YYYY')}` :
+                    orderDate.format('MMM-YYYY');
 
-      orders.forEach((order) => {
-        const orderDate = moment(order.createdAt);
-        console.log(orderDate);
-        const label = range === 'day' ? orderDate.format('YYYY-MM-DD') :
-                      range === 'week' ? `week-${orderDate.format('W-YYYY')}` :
-                      orderDate.format('MMM-YYYY');
-
-                      // console.log(label); 
-
-        if (mappedData[label] !== undefined) {
-          order.products.forEach((product) => {
-            mappedData[label] += product.prize * product.amount;
-            // console.log(mappedData[label]);
-          });
-        }
-      });
-
-      const data = Object.values(mappedData);
-      res.status(200).json({ labels, data });
-    } else {
-      const customLabels = [];
-      let currentDate = moment(startDate);
-
-      while (currentDate.isSameOrBefore(endDate)) {
-        customLabels.push(currentDate.format('YYYY-MM-DD'));
-        currentDate.add(1, 'day');
+      if (mappedData[label] !== undefined) {
+        order.products.forEach((product) => {
+          mappedData[label] += product.prize * product.amount;
+        });
       }
+    });
 
-      const mappedData = customLabels.reduce((acc, label) => {
-        acc[label] = 0;
-        return acc;
-      }, {});
+    const data = Object.values(mappedData);
 
-      orders.forEach((order) => {
-        const orderDate = moment(order.createdAt).format('YYYY-MM-DD');
-        if (mappedData[orderDate] !== undefined) {
-          order.products.forEach((product) => {
-            mappedData[orderDate] += product.prize * product.amount;
-          });
-        }
-      });
-
-      const data = Object.values(mappedData);
-      res.status(200).json({ labels: customLabels, data });
-    }
+    res.status(200).json({ labels, data });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -376,5 +375,4 @@ const calculateTotalPrice = async (req, res) => {
 
 
 
-module.exports = { getorders , ordercount , orderamount ,orderchart, customOrderchart , calculateTotalPrice };
-
+module.exports = { getorders , ordercount , orderamount ,orderchart, customOrderchart ,calculateTotalPrice };

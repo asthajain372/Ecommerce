@@ -8,8 +8,6 @@ const Addprod = () => {
 
   const SITE_URL = process.env.REACT_APP_SITE_URL;
 
-
-
   const [name, setname] = useState('');
   const [desc, setdesc] = useState('');
   const [image, setimage] = useState('');
@@ -58,7 +56,7 @@ const Addprod = () => {
     }
 
     try {
-      const response = await fetch(`${SITE_URL}add`, {
+      const response = await fetch(`${SITE_URL}/add`, {
         method: 'POST',
         body: formdata
       });
@@ -138,9 +136,9 @@ const Addprod = () => {
                     <p className="text-muted">Orders placed across store</p>
                   </div>
                   <div className="d-flex align-content-center flex-wrap gap-3">
-                    <button className="btn btn-label-secondary">Discard</button>
-                    <button className="btn btn-label-primary">Save draft</button>
-                    <Link to='/Listprod' >
+                    {/* <button className="btn btn-label-secondary">Discard</button>
+                    <button className="btn btn-label-primary">Save draft</button> */}
+                    <Link  to='/Listprod' >
                       <button type="submit" className="btn btn-primary" onClick={handledata} > Publish </button>
                     </Link>
                   </div>

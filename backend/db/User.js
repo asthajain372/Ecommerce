@@ -17,7 +17,7 @@ const Usermodel =  new mongoose.Schema({
     type:String ,
 
     roles:[{type:mongoose.Schema.Types.ObjectId, ref:'Roles' }]
-});
+}, { timestamps: true });
 
 module.exports = mongoose.model('user' , Usermodel);
 // const Usermodel = mongoose.model('user', new mongoose.Schema({ name: String }));

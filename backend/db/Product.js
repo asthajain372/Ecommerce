@@ -17,7 +17,7 @@ const productschema = mongoose.Schema({
         default:[]
     },
     prize:{type:String}
-}, { collection: 'products' });
+},  { timestamps: true });
 
 
 module.exports = mongoose.model('Products' , productschema);

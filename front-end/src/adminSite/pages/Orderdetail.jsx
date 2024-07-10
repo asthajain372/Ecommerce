@@ -10,19 +10,34 @@ import * as XLSX from 'xlsx';
 const Listorder = () => {
 
   const [product_list, setproduct_list] = useState([]);
-  const [search, setsearch] = useState('');
+  const [order_id, setorder_id] = useState('');
+  const [line1, setline1] = useState('');
+  const [city, setcity] = useState('');
+  const [postal_code, setpostal_code] = useState('');
+  const [state, setstate] = useState('');
+  const [email, setemail] = useState('');
+  const [name, setname] = useState('');
+  const [user_id, setuser_id] = useState('');
+  // const[email , setemail] = useState('');
+
   const param = useParams();
-  console.log(param, "param");
+  // console.log(param, "param");
   useEffect(() => {
     async function fetch_order() {
       const orders = await fetch(`${process.env.REACT_APP_SITE_URL}/order`);
       const data = await orders.json();
       const list = data.filter((val => val._id === param.id));
-      // console.log("product_list", product_list);
-      console.log("list", list);
-      console.log("product", list[0].products);
+      setorder_id(list[0]._id);
+      const address = list[0].address;
+      setline1(address.line1);
+      setcity(address.city);
+      setpostal_code(address.postal_code);
+      setstate(address.state);
+      const user_details = list[0].user;
+      setemail(user_details.email);
+      setname(user_details.name);
+      setuser_id(user_details.user_id);
       setproduct_list(list[0].products);
-      console.log("product_list", product_list);
     }
     fetch_order();
   }, [])
@@ -87,17 +102,17 @@ const Listorder = () => {
         <div className="content-wrapper">
           {/* Content */}
           <div className="container-xxl flex-grow-1 container-p-y">
-            <h4 className="py-3 mb-4">
-              <span className="text-muted fw-light">eCommerce /</span> Order Details
-            </h4>
+         
             <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-3">
               <div className="d-flex flex-column justify-content-center">
-                <h5 className="mb-1 mt-3">Order #32543 <span className="badge bg-label-success me-2 ms-2">Paid</span> <span className="badge bg-label-info">Ready to Pickup</span></h5>
-                <p className="text-body">Aug 17, <span id="orderYear" />, 5:48 (ET)</p>
-              </div>
-              <div className="d-flex align-content-center flex-wrap gap-2">
-                <button className="btn btn-label-danger delete-order">Delete Order</button>
-              </div>
+                {/* <h5 className="mb-1 mt-3">Order # {order_id} </h5> */}
+                <h5 className="mb-1 mt-3">
+  Order # <span className="text-muted">{order_id}</span>
+</h5>
+                
+                
+                </div>
+             
             </div>
             {/* Order Details Table */}
             <div className="row">
@@ -105,7 +120,7 @@ const Listorder = () => {
                 <div className="card mb-4">
                   <div className="card-header d-flex justify-content-between align-items-center">
                     <h5 className="card-title m-0">Order details</h5>
-                    <h6 className="m-0"><a href=" javascript:void(0)">Edit</a></h6>
+                    {/* <h6 className="m-0"><a href=" javascript:void(0)">Edit</a></h6> */}
                   </div>
                   <div className="card-datatable table-responsive">
 
@@ -137,47 +152,34 @@ const Listorder = () => {
                   </div>
                   <div className="card-body">
                     <div className="d-flex justify-content-start align-items-center mb-4">
-                      <div className="avatar me-2">
-                        <img src="../../assets/img/avatars/1.png" alt="Avatar" className="rounded-circle" />
-                      </div>
+                   
                       <div className="d-flex flex-column">
                         <a href="app-user-view-account.html" className="text-body text-nowrap">
-                          <h6 className="mb-0">Shamus Tuttle</h6>
+                          {/* <h6 className="mb-0">Shamus Tuttle</h6> */}
                         </a>
-                        <small className="text-muted">Customer ID: #58909</small></div>
+                        <small className="text-muted"> Customer ID: #{user_id}</small></div>
                     </div>
-                    <div className="d-flex justify-content-start align-items-center mb-4">
-                      <span className="avatar rounded-circle bg-label-success me-2 d-flex align-items-center justify-content-center"><i className="bx bx-cart-alt bx-sm lh-sm" /></span>
-                      <h6 className="text-body text-nowrap mb-0">12 Orders</h6>
-                    </div>
+                 
                     <div className="d-flex justify-content-between">
                       <h6>Contact info</h6>
-                      <h6><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editUser">Edit</a></h6>
+                      {/* <h6><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#editUser">Edit</a></h6> */}
                     </div>
-                    <p className=" mb-1">Email: Shamus889@yahoo.com</p>
-                    <p className=" mb-0">Mobile: +1 (609) 972-22-22</p>
+                    <p className=" mb-0">Name: {name}</p>
+                    <p className=" mb-1">Email: {email}</p>
                   </div>
                 </div>
                 <div className="card mb-4">
-                  <div className="card-header d-flex justify-content-between">
+
+                <div className="card-header">
                     <h6 className="card-title m-0">Shipping address</h6>
-                    <h6 className="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6>
                   </div>
+
+              
                   <div className="card-body">
-                    <p className="mb-0">45 Roker Terrace <br />Latheronwheel <br />KW5 8NW,London <br />UK</p>
+                    <p className="mb-0">{line1} <br />{city} <br />{state} <br />{postal_code}</p>
                   </div>
                 </div>
-                <div className="card mb-4">
-                  <div className="card-header d-flex justify-content-between">
-                    <h6 className="card-title m-0">Billing address</h6>
-                    <h6 className="m-0"><a href=" javascript:void(0)" data-bs-toggle="modal" data-bs-target="#addNewAddress">Edit</a></h6>
-                  </div>
-                  <div className="card-body">
-                    <p className="mb-4">45 Roker Terrace <br />Latheronwheel <br />KW5 8NW,London <br />UK</p>
-                    <h6 className="mb-0 pb-2">Mastercard</h6>
-                    <p className="mb-0">Card Number: ******4291</p>
-                  </div>
-                </div>
+               
               </div>
             </div>
           </div>

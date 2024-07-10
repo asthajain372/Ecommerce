@@ -1,145 +1,141 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-
+import Profile from '../../pages/Profile'
 
 
 const Sidebar = () => {
   return (
     <div>
-    {/* ======= Sidebar ======= */}
-<aside id="sidebar" className="sidebar">
-<ul className="sidebar-nav" id="sidebar-nav">
-  <li className="nav-item">
-    <a className="nav-link collapsed" href="index.html">
-      <i className="bi bi-grid" />
-      <span>Dashboard</span>
-    </a>
-  </li>{/* End Dashboard Nav */}
+      {/* ======= Sidebar ======= */}
+      <aside id="sidebar" className="sidebar">
+        <ul className="sidebar-nav" id="sidebar-nav">
+          <li className="nav-item">
+            <Link to='/admin/Dashboard' className="nav-link collapsed" href="index.html">
+              <i className="bi bi-grid" />
+              <span>Dashboard</span>
+            </Link>
+          </li>{/* End Dashboard Nav */}
 
-  <li className="nav-item">
-    <a className="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-      <i className="bi bi-layout-text-window-reverse" /><span>Products</span><i className="bi bi-chevron-down ms-auto" />
-    </a>
-    <ul id="tables-nav" className="nav-content collapse "  style={{TextDecoration:'none'}}   data-bs-parent="#sidebar-nav">
- 
-        <Link  to='/Listprod'>
-        <i className="bi bi-circle" />  <span  style={{TextDecoration:'none'}}    >  Product List</span>
-          </Link>
-        {/* <Link  to='/Listprod'>
+          <li className="nav-item">
+            <a className="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+              <i className="bi bi-layout-text-window-reverse" /><span>Products</span><i className="bi bi-chevron-down ms-auto" />
+            </a>
+            <ul id="tables-nav" className="nav-content collapse " style={{ TextDecoration: 'none' }} data-bs-parent="#sidebar-nav">
+
+              <Link style={{ textDecoration: 'none' }} to='/Listprod'>
+                <i className="bi bi-circle" />  <span    >  Product List</span>
+              </Link>
+              {/* <Link  to='/Listprod'>
           <i className="bi bi-circle" /> <span  to='/Listprod'   >  Product List</span>
           </Link> */}
- 
-        <Link  to='/Addprod'   href="tables-data.html">
-        <i className="bi bi-circle" /> <span   style={{TextDecoration:'none'}}  > Add Product</span>
-        </Link>
 
-        <Link  to='/'   href="tables-data.html">
+              <Link style={{ textDecoration: 'none' }} to='/Addprod' href="tables-data.html">
+                <i className="bi bi-circle" /> <span style={{ TextDecoration: 'none' }}  > Add Product</span>
+              </Link>
+
+              {/* <Link  style={{ textDecoration: 'none' }}  to='/'   href="tables-data.html">
         <i className="bi bi-circle" /> <span  style={{TextDecoration:'none'}}  > Category List</span>
-        </Link>
-   
-      
+        </Link> */}
 
-    </ul>
+
+
+            </ul>
+
+
+          </li>{/* End Tables Nav */}
+
+
+          <li className="nav-item">
+            <a className="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+              <i className="bi bi-journal-text" /><span>Order</span><i className="bi bi-chevron-down ms-auto" />
+            </a>
+            <ul id="forms-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <Link style={{ textDecoration: 'none' }} to='/listorder' >
+                  <i className="bi bi-circle" /><span> Order List</span>
+                </Link>
+              </li>
+            </ul>
+          </li>{/* End Forms Nav */}
+
+          <li className="nav-item">
+
+            <a className="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+              <i className="bi bi-person" /><span>Users</span> <i className="bi bi-chevron-down ms-auto" />
+            </a>
+            <ul id="charts-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
+              <li>
+                <Link style={{ textDecoration: 'none' }} to='/customer' >
+                  <i className="bi bi-circle" /><span>All Users</span>
+                </Link>
+              </li>
+            </ul>
+          </li>
+
+          {/* <li className="nav-item">
+            <a style={{ textDecoration: 'none' }} className="nav-link collapsed" href="pages-contact.html">
+              <Link style={{ textDecoration: 'none' }} to='/message' >
+                <i className="bi bi-envelope" /><span> Messages</span>
+              </Link>
+            </a>
+          </li> */}
+
+
+    
+          <li className="nav-item">
+            <Link to='/message'  className="nav-link collapsed">
+              <i className="bi bi-envelope" />
+              <span>Messages</span>
+            </Link>
+          </li>{/* End F.A.Q Page Nav */}
+
+
+          <li className="nav-item">
     
 
-  </li>{/* End Tables Nav */}
+      <Link to='/profile'  className="nav-link collapsed">
+              <i className="bi bi-person" />
+              <span>Profile</span>
+            </Link>
+    
+          </li>{/* End Profile Page Nav */}
 
+          
 
-  <li className="nav-item">
-    <a className="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
-      <i className="bi bi-journal-text" /><span>Order</span><i className="bi bi-chevron-down ms-auto" />
-    </a>
-    <ul id="forms-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <Link to='/listorder' >
-          <i className="bi bi-circle" /><span> Order List</span>
-        </Link>
-      </li>
-      <li>
-        <a href="forms-layouts.html">
-          <i className="bi bi-circle" /><span>Order Details</span>
-        </a>
-      </li>
-      <li>
-        <a href="forms-editors.html">
-          <i className="bi bi-circle" /><span>Form Editors</span>
-        </a>
-      </li>
-      <li>
-        <a href="forms-validation.html">
-          <i className="bi bi-circle" /><span>Form Validation</span>
-        </a>
-      </li>
-    </ul>
-  </li>{/* End Forms Nav */}
+          <li className="nav-item">
+            <Link to='/message'  className="nav-link collapsed">
+              <i className="bi bi-question-circle" />
+              <span>F.A.Q</span>
+            </Link>
+          </li>{/* End F.A.Q Page Nav */}
 
-  <li className="nav-item">
-
-  <a className="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-      <i className="bi bi-person" /><span>Customers</span> <i className="bi bi-chevron-down ms-auto" />
-    </a>
-    <ul id="charts-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="charts-chartjs.html">
-          <i className="bi bi-circle" /><span>All Customers</span>
-        </a>
-      </li>
-      <li>
-        <a href="charts-apexcharts.html">
-          <i className="bi bi-circle" /><span>Customer details</span>
-        </a>
-      </li>
-
-    </ul>
-  </li>{/* End Charts Nav */}
-
-  {/* End Icons Nav */}
-  <li className="nav-heading">Pages</li>
-  <li className="nav-item">
-    <a className="nav-link " href="users-profile.html">
-      <i className="bi bi-person" />
-      <span>Profile</span>
-    </a>
-  </li>{/* End Profile Page Nav */}
-  <li className="nav-item">
-    <a className="nav-link collapsed" href="pages-faq.html">
-      <i className="bi bi-question-circle" />
-      <span>F.A.Q</span>
-    </a>
-  </li>{/* End F.A.Q Page Nav */}
-  <li className="nav-item">
-    <a className="nav-link collapsed" href="pages-contact.html">
-      <i className="bi bi-envelope" />
-      <span>Contact</span>
-    </a>
-  </li>{/* End Contact Page Nav */}
-  <li className="nav-item">
-    <a className="nav-link collapsed" href="pages-register.html">
-      <i className="bi bi-card-list" />
-      <span>Register</span>
-    </a>
-  </li>{/* End Register Page Nav */}
-  <li className="nav-item">
-    <a className="nav-link collapsed" href="pages-login.html">
-      <i className="bi bi-box-arrow-in-right" />
-      <span>Login</span>
-    </a>
-  </li>{/* End Login Page Nav */}
-  <li className="nav-item">
-    <a className="nav-link collapsed" href="pages-error-404.html">
-      <i className="bi bi-dash-circle" />
-      <span>Error 404</span>
-    </a>
-  </li>{/* End Error 404 Page Nav */}
-  <li className="nav-item">
-    <a className="nav-link collapsed" href="pages-blank.html">
-      <i className="bi bi-file-earmark" />
-      <span>Blank</span>
-    </a>
-  </li>{/* End Blank Page Nav */}
-</ul>
-</aside>{/* End Sidebar*/}
-</div>
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="pages-register.html">
+              <i className="bi bi-card-list" />
+              <span>Register</span>
+            </a>
+          </li>{/* End Register Page Nav */}
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="pages-login.html">
+              <i className="bi bi-box-arrow-in-right" />
+              <span>Login</span>
+            </a>
+          </li>{/* End Login Page Nav */}
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="pages-error-404.html">
+              <i className="bi bi-dash-circle" />
+              <span>Error 404</span>
+            </a>
+          </li>{/* End Error 404 Page Nav */}
+          <li className="nav-item">
+            <a className="nav-link collapsed" href="pages-blank.html">
+              <i className="bi bi-file-earmark" />
+              <span>Blank</span>
+            </a>
+          </li>{/* End Blank Page Nav */}
+        </ul>
+      </aside>{/* End Sidebar*/}
+    </div>
   )
 }
 

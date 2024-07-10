@@ -6,7 +6,7 @@ import Filterdprod from '../components/Filterdprod'
 import { useEffect , useState } from 'react'
 import Sidebar from '../adminSite/components/Sidebar'
 import Header from '../adminSite/components/Header'
-
+import Navbar from '../components/Navbar'
 
 const Products = () => {
   // const [productData, setProductData] = useState([]);
@@ -26,6 +26,7 @@ const Products = () => {
 
   return (
     <div>
+      <Navbar/> 
       {/* <Slider/> */}
       {/* <Button/> */}
       {/* 

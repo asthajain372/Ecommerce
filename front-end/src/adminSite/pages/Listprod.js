@@ -8,13 +8,17 @@ import { Button } from 'react-bootstrap'
 import * as XLSX from 'xlsx';
 import { Link } from 'react-router-dom'
 
-
-
 const Listprod = () => {
 
   const [pro_list, setpro_list] = useState([]);
   const [search, setsearch] = useState('');
   const [filtered, setfiltered] = useState([]);
+  // const[ Product_flag , set_product_flag ] = useState(false);
+
+  // PascalCase
+  // sanke_case  - python 
+  // camleCase  - javascript
+  // kabak-case
 
   async function fetch_product() {
     const prod_data = await fetch(`${process.env.REACT_APP_SITE_URL}/product`);
@@ -111,7 +115,7 @@ const Listprod = () => {
     {
       name: "Delete",
       cell: (row) => (
-<Button className="btn btn-danger"   onClick={() => deleteProduct(row._id)}  > Delete </Button>
+      <Button className="btn btn-danger"   onClick={() => deleteProduct(row._id)}  > Delete </Button>
       )
     },
   ];

@@ -12,7 +12,7 @@ import {
     MDBTypography,
 } from "mdb-react-ui-kit";
 import React, { useEffect } from "react";
-
+import Navbar from "../components/Navbar";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -59,6 +59,7 @@ export default function Order() {
 
     return (
         <>
+        <Navbar/> 
             <section
                 className="h-100 gradient-custom"
                 style={{ backgroundColor: "#eee" }}
