@@ -9,6 +9,7 @@ const Sidebar = () => {
     localStorage.clear();
     navigate('/signup');
   }
+
   return (
     <div>
       {/* ======= Sidebar ======= */}
