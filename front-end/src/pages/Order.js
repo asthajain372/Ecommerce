@@ -2,12 +2,9 @@ import {
     MDBCard,
     MDBCardBody,
     MDBCardFooter,
-    MDBCardHeader,
     MDBCardImage,
     MDBCol,
     MDBContainer,
-    MDBProgress,
-    MDBProgressBar,
     MDBRow,
     MDBTypography,
 } from "mdb-react-ui-kit";
@@ -17,21 +14,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-
-
 export default function Order() {
 
     const [orders, setorders] = useState([]);
     const [total_pr, settotal_pr] = useState(0);
 
     useEffect(() => {
-        console.log("hello");
         get_orders();
-        setTimeout(() => {
-            console.log("orders", orders); // This will log an empty array initially
-        }, 4000); // Timeout set to 2000 milliseconds
     }, []);
-
 
 
     useEffect(() => {
@@ -44,18 +34,20 @@ export default function Order() {
         settotal_pr(totalPrice); // Update the total price state once after calculating
     }, [orders]);
 
-
     async function get_orders() {
+
+        const user = JSON.parse(localStorage.getItem('user'));
+        const userId = user._id;
+
         const order_data = await fetch(`${process.env.REACT_APP_SITE_URL}/order`, {
             method: "get"
         });
         const order_details = await order_data.json();
-        // console.log(order_details);
-        setorders(order_details);
+        const userOrders = order_details.filter(order => {
+            return order.user.user_id === userId;
+        });
+        setorders(userOrders);
     }
-
-    let finaltotal = 0;
-
 
     return (
         <>
@@ -64,27 +56,6 @@ export default function Order() {
                 className="h-100 gradient-custom"
                 style={{ backgroundColor: "#eee" }}
             >
-
-
-                {/* 
-                {
-                    orders.map((order) => {
-                        order.products.map((product) => {
-                            return (
-                                <div key={product.id}>
-                                    <p>Name: {product.name}</p>
-                                    <p>Price: {product.price}</p>
-                                </div>
-                            );
-                        });
-
-                    }
-                    )} */}
-
-
-
-
-
                 <MDBContainer className="py-5 h-100">
                     <MDBRow className="justify-content-center align-items-center h-100">
                         <MDBCol lg="10" xl="8">
@@ -98,52 +69,17 @@ export default function Order() {
                                         >
                                             My Orders
                                         </p>
-                                        {/* <p className="small text-muted mb-0">
-                                            Receipt Voucher : 1KAU9-84UIL
-                                        </p> */}
                                     </div>
-
-
-
-
-
-
-
-
-                                    {/* 
-{
-Array.isArray(orders) && orders.map((order) => {
-    return order.products.map((product) => {
-        return (
-            <div key={product._id}>
-                <p>Name: {product.name}</p>
-                <p>Price: {product.price}</p>
-            </div>
-        );
-    });
-})
-} */}
-
 
                                     {
                                         Array.isArray(orders) && orders.map((order) => (
                                             
-
                                             order.products.map((product) => {
-                                                console.log(product)
-
                                                 return (
                                                     <div key={product._id}>
-
-
                                                         <Link   to={`/order/${order._id}/${product._id}/${product.product_id}`}   style={{ textDecoration: 'none', color: 'black' }} >
-                                                        
                                                         <MDBCard className="shadow-0 border mb-4"   >
-                                                 
                                                             <MDBCardBody>
-
-
-
                                                                 <MDBRow>
                                                                     <MDBCol md="2">
                                                                         <MDBCardImage
@@ -166,13 +102,7 @@ Array.isArray(orders) && orders.map((order) => {
                                                                                 <p className="text-muted mb-0"> color: {product.color} &nbsp;&nbsp;  size: {product.size}</p>
 
                                                                             </MDBRow>
-
                                                                         </MDBRow>
-
-
-
-
-
                                                                     </MDBCol>
                                                                     <MDBCol
                                                                         md="2"
@@ -194,17 +124,12 @@ Array.isArray(orders) && orders.map((order) => {
                                                                 </MDBRow>
                                                             </MDBCardBody>
                                                         </MDBCard>
-
                                                         </Link>
-
-
                                                     </div>
                                                 );
                                             })
                                         ))
                                     }
-
-                                 
                                 </MDBCardBody>
                                 <MDBCardFooter
                                     className="border-0 px-4 py-5"

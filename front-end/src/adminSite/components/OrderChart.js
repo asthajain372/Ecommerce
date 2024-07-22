@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Line, Pie } from 'react-chartjs-2';
+import {  Pie } from 'react-chartjs-2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'chart.js/auto';
@@ -49,7 +49,6 @@ export const OrderChart = () => {
         setrange(para);
       }
         useEffect(() => {
-            // Fetch data here and set states for orderLabel, orderData, revenueData, userData, totalOrders, totalRevenue, totalUsers
             total_Sales(custom_range);
             total_Users(custom_range);
             order_chart(custom_range);
@@ -59,7 +58,6 @@ export const OrderChart = () => {
     async function total_Sales(para) {
         const orders_count = await fetch(`${SITE_URL}/calculateTotalPrice/${para}`);
         const data = await orders_count.json();
-        // console.log("data", data);
         setRevenueData(data.data);
     };
 
@@ -67,7 +65,6 @@ export const OrderChart = () => {
     async function total_Users(para) {
         const orders_count = await fetch(`${SITE_URL}/calculateUserCount/${para}`);
         const data = await orders_count.json();
-        console.log("data", data);
         setUserData(data.data);
     };
 
@@ -87,8 +84,6 @@ export const OrderChart = () => {
         handle_Sales_total();
         handle_User_total();
         setrange('custom');
-        
-        // console.log()
       }
 
 
@@ -113,77 +108,6 @@ export const OrderChart = () => {
         const data = await orders_count.json();
         setUserData(data.data);
       };
-
-
-
-
-    // const data = {
-    //     labels: orderLabel, // Assuming these are your date labels
-    //     datasets: [
-    //         {
-    //             label: 'Orders',
-    //             data: orderData,
-    //             backgroundColor: [
-    //                 'rgba(75, 192, 192, 0.8)',
-    //                 'rgba(75, 192, 192, 0.6)',
-    //                 'rgba(75, 192, 192, 0.4)',
-    //                 'rgba(75, 192, 192, 0.2)',
-    //                 'rgba(75, 192, 192, 0.1)',
-    //             ],
-    //             hoverBackgroundColor: [
-    //                 'rgba(75, 192, 192, 1)',
-    //                 'rgba(75, 192, 192, 1)',
-    //                 'rgba(75, 192, 192, 1)',
-    //                 'rgba(75, 192, 192, 1)',
-    //                 'rgba(75, 192, 192, 1)',
-    //             ],
-    //             borderWidth: 1,
-    //             borderColor: '#ffffff',
-    //         },
-    //         {
-    //             label: 'Customers',
-    //             data: userData,
-    //             backgroundColor: [
-    //                 'rgba(255, 205, 86, 0.8)',
-    //                 'rgba(255, 205, 86, 0.6)',
-    //                 'rgba(255, 205, 86, 0.4)',
-    //                 'rgba(255, 205, 86, 0.2)',
-    //                 'rgba(255, 205, 86, 0.1)',
-    //             ],
-    //             hoverBackgroundColor: [
-    //                 'rgba(255, 205, 86, 1)',
-    //                 'rgba(255, 205, 86, 1)',
-    //                 'rgba(255, 205, 86, 1)',
-    //                 'rgba(255, 205, 86, 1)',
-    //                 'rgba(255, 205, 86, 1)',
-    //             ],
-    //             borderWidth: 1,
-    //             borderColor: '#ffffff',
-    //         },
-    //         {
-    //             label: 'Revenue',
-    //             data: revenueData,
-    //             backgroundColor: [
-    //                 'rgba(153, 102, 255, 0.8)',
-    //                 'rgba(153, 102, 255, 0.6)',
-    //                 'rgba(153, 102, 255, 0.4)',
-    //                 'rgba(153, 102, 255, 0.2)',
-    //                 'rgba(153, 102, 255, 0.1)',
-    //             ],
-    //             hoverBackgroundColor: [
-    //                 'rgba(153, 102, 255, 1)',
-    //                 'rgba(153, 102, 255, 1)',
-    //                 'rgba(153, 102, 255, 1)',
-    //                 'rgba(153, 102, 255, 1)',
-    //                 'rgba(153, 102, 255, 1)',
-    //             ],
-    //             borderWidth: 1,
-    //             borderColor: '#ffffff',
-    //         },
-    //     ],
-    // };
-
-
 
         const data = {
         labels: orderLabel, // Assuming these are your date labels
@@ -235,10 +159,6 @@ export const OrderChart = () => {
     return (
         <div>
 
-
-
-
-            {/* Recent Activity */}
             <div className="card">
                 <div className="filter">
                     <a className="icon" href="#" data-bs-toggle="dropdown"><i className="bi bi-three-dots" /></a>
@@ -292,13 +212,8 @@ export const OrderChart = () => {
               </div>
             )}
 
-
-
-
-
-                    {/* <div className="activity"> */}
                     <Pie data={data} options={options} />
-                    {/* </div> */}
+                   
                 </div>
             </div>
         </div>

@@ -3,9 +3,10 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-
+import { useEffect } from 'react';
 const Signup = () => {
 
+    const [cloudimg, setcloudimg] = useState('');
     const [name, setname] = useState('');
     const [email, setemail] = useState('');
     const [password, setpassword] = useState('');
@@ -13,38 +14,66 @@ const Signup = () => {
     const [type, setType] = useState('');
 
     const Navigate = useNavigate();
+
+
+    const isLoggedIn = localStorage.getItem('user'); // Assuming you store user info in localStorage
+
+    useEffect(() => {
+      if (isLoggedIn) {
+        Navigate('/');
+      }
+    }, [isLoggedIn, Navigate]);
+
+
     async function handledata() {
+        const dataurl = new FormData();
+        dataurl.append("file", cloudimg);
+        dataurl.append("upload_preset", "profileimage");
+        dataurl.append("cloud_name", "dkdudpz7y");
 
-        console.log(name, email, password, confirm );
-        if (password != confirm) {
-            alert('password does not match ');
-        } else {
-            const data = { name, password, email, confirm , type };
 
-            let response = await fetch(
-                `${process.env.REACT_APP_SITE_URL}/signup`,
-                {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
+        try {
+            const res = await fetch("https://api.cloudinary.com/v1_1/dkdudpz7y/image/upload", {
+                method: "post",
+                body: dataurl
+            });
+    
+            const data = await res.json();
+            const url = data.url ;
+    
+            if (password !== confirm){
+                alert('Passwords do not match');
+            } else {
+                console.log("dataaaaaaaaaaaaa", url);
+                const userData = { name, password, email, confirm, type, url };
+
+                let response = await fetch(
+                    `${process.env.REACT_APP_SITE_URL}/signup`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/json',
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(userData)
+                    }
+                );
+    
+                response = await response.json();
+                console.log(response);
+    
+                localStorage.setItem('user', JSON.stringify(response.user));
+                localStorage.setItem('token', JSON.stringify(response.auth));
+    
+                if (response) {
+                    Navigate('/');
                 }
-            );
-
-            response = await response.json();
-            console.log(response);
-
-            localStorage.setItem('user', JSON.stringify(response.user));
-            localStorage.setItem('token', JSON.stringify(response.auth));
-
-            if (response) {
-                Navigate('/login');
             }
-
+        } catch (error) {
+            console.error("Error uploading image:", error);
         }
     }
+    
 
     return (
         <div>
@@ -85,21 +114,37 @@ const Signup = () => {
                                                     </div>
                                                 </div>
 
-                                            <div className="d-flex flex-row align-items-center mb-4">
-                                                <div className="form-outline flex-fill mb-0">
-                                                    <select onChange={(e) => setType(e.target.value)} id="formSelectRole" className="form-select">
-                                                        <option value="buyer" >Buyer</option>
-                                                        <option value="seller"> Seller</option>
-                                                    </select>
-                                                </div>
-                                            </div>
 
-                                                <div className="form-check d-flex justify-content-center mb-4">
+                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                    <div className="form-outline flex-fill mb-0">
+                                                        <select onChange={(e) => setType(e.target.value)} id="formSelectRole" className="form-select">
+                                                            <option value="buyer" >Buyer</option>
+                                                            <option value="seller"> Seller</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div className="d-flex flex-row align-items-center mb-4">
+                                                    <div className="form-outline flex-fill mb-0">
+                                                        <input
+                                                            type="file"
+                                                            className="form-control"
+                                                            id="img"
+                                                            accept=".png,.jpg,.jpeg"
+                                                            onChange={(e)=>setcloudimg(e.target.files[0])}
+                                                        />
+                                                    </div>
+                                                </div>
+
+
+
+                                                {/* <div className="form-check d-flex justify-content-center mb-4">
                                                     <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3c" />
                                                     <label className="form-check-label">
                                                         I agree all statements in <a href="#!">Terms of service</a>
                                                     </label>
-                                                </div>
+                                                </div> */}
 
                                                 <div className="d-flex justify-content-center  mb-3 mb-lg-4">
                                                     <button type="button" onClick={handledata} className="btn btn-primary btn-lg">Sign Up</button>
@@ -114,10 +159,10 @@ const Signup = () => {
                                         </div>
                                         <div className="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                        <img src={`${process.env.REACT_APP_SITE_URL}/public/images/travel.jpg`}
-                                        className="img-fluid" 
+                                            <img src={`${process.env.REACT_APP_SITE_URL}/public/images/travel.jpg`}
+                                                className="img-fluid"
                                             />
-             
+
                                             {/* <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
                                                 className="img-fluid" alt="Sample image" /> */}
                                         </div>

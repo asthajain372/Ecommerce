@@ -6,7 +6,8 @@ import '../App.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { addcard } from '../features/slice/cardSlice';
 import { Link } from 'react-router-dom';
-
+// import { Navbar } from 'react-bootstrap';
+import Navbar from './Navbar';
 const Singleprod = () => {
     const dispatch = useDispatch();
     const param = useParams();
@@ -36,6 +37,9 @@ const Singleprod = () => {
     console.log("color", color);
 
     return (
+        <>
+        <Navbar/>
+        {/* dfvdf */}
         <div className="single-product-container">
             {singleproduct.map((val) => (
                 <div key={val.id} className="product-details">
@@ -159,13 +163,15 @@ const Singleprod = () => {
                                 }))} variant="primary" > Add to Cart</Button>
                                 </Link>
                                 
-                                <Button> Buy Now  </Button>
+                                {/* <Button> Buy Now  </Button> */}
                             </p>
                         </div>
                     </div>
                 </div>
             ))}
         </div>
+        </>
+
     )
 }
 

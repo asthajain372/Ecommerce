@@ -12,6 +12,20 @@ async function getusers(req , res){
     }
 }
 
+async function getUsersForSidebar(req , res){
+  try {
+		const loggedInUserId = req.userId;
+
+		const filteredUsers = await usermodel.find({ _id: { $ne: loggedInUserId } }).select("-password");
+
+		res.status(200).json(filteredUsers);
+	} catch (error) {
+		console.error("Error in getUsersForSidebar: ", error.message);
+		res.status(500).json({ error: "Internal server error" });
+	}
+}
+
+
 async function usercount(req, res) {
   try {
     const params = req.params.day;
@@ -77,14 +91,6 @@ async function usercount(req, res) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
-
-
-
-
-
-
-
-
 
 const generateLabels = (range) => {
   const labels = [];
@@ -189,4 +195,4 @@ const calculateUserCount = async (req, res) => {
 
 
 
-module.exports = { getusers , usercount  , calculateUserCount};
+module.exports = { getusers , getUsersForSidebar , usercount  , calculateUserCount};

@@ -10,7 +10,6 @@ import * as XLSX from 'xlsx';
 const Listorder = () => {
   const SITE_URL = process.env.REACT_APP_SITE_URL;
   const [order_list, setorder_list] = useState([]);
-  const [search, setsearch] = useState('');
 
   useEffect(() => {
     async function fetch_order() {
@@ -76,8 +75,8 @@ const Listorder = () => {
   return (
     <div>
       <Sidebar />
-      <Header />
       <main id="main" className="main">
+      <Header />
         <div className="pagetitle">
           {/* <h1>Profile</h1> */}
           <nav>
@@ -113,7 +112,6 @@ const Listorder = () => {
                 pagination
                 fixedHeader
                 fixedHeaderScrollHeight='465px'
-                selectableRows
                 selectableRowsHighlight
                 highlightOnHover
               />

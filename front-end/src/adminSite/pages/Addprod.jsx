@@ -22,6 +22,7 @@ const Addprod = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
+    // console.log(e);
     setimage(file);
     setImageChanged(true);
   };
@@ -96,9 +97,6 @@ const Addprod = () => {
   function addcolor(e) {
     setnewcolor([...newcolor, color]);
   }
-  const handleRemoveImage = () => {
-    setimage(null); // Reset the image state to null
-  };
 
   function handlepriseChange(e) {
     setprize(e.target.value)
@@ -108,12 +106,9 @@ const Addprod = () => {
   return (
     <div>
       <Sidebar />
-      <Header />
 
       <main id="main" className="main"  style={{backgroundColor:'#f7f7f7'}} >
-      {/* <main id="main" className="main"  style={{backgroundColor:'#f7f7f7'}} > */}
-
-
+      <Header />
         <div className="layout-page">
           <div className="content-wrapper">
             <div className="container-xxl flex-grow-1 container-p-y">
@@ -136,8 +131,6 @@ const Addprod = () => {
                     <p className="text-muted">Orders placed across store</p>
                   </div>
                   <div className="d-flex align-content-center flex-wrap gap-3">
-                    {/* <button className="btn btn-label-secondary">Discard</button>
-                    <button className="btn btn-label-primary">Save draft</button> */}
                     <Link  to='/Listprod' >
                       <button type="submit" className="btn btn-primary" onClick={handledata} > Publish </button>
                     </Link>
@@ -146,7 +139,7 @@ const Addprod = () => {
                 <div className="row">
                   <div className="col-12 col-lg-8">
                     <div className="card mb-4">
-                      <div className="card-header">
+                      <div className="card-header py-4">
                         <h5 className="card-tile mb-0">Product information</h5>
                       </div>
                       <div className="card-body">
@@ -168,7 +161,7 @@ const Addprod = () => {
                       </div>
                     </div>
                     <div className="card mb-4">
-                      <div className="card-header">
+                      <div className="card-header py-4">
                         <h5 className="card-tile mb-0">Product Image</h5>
                       </div>
 
@@ -176,7 +169,6 @@ const Addprod = () => {
                         <div className="mb-3">
                           <label htmlFor="img" className="form-label">Image:</label>
                           <div style={{ display: 'flex', alignItems: 'center' }}>
-                     
                             {
                               url && (
                                 <img
@@ -186,8 +178,6 @@ const Addprod = () => {
                                 />
                               )
                             }
-
-
                             <input
                               type="file"
                               className="form-control"
@@ -237,16 +227,13 @@ const Addprod = () => {
                             <button className="btn btn-secondary mt-1 mb-3" onClick={() => addsize(size)}> Add Size</button>
                           </div>
                           <label htmlFor="img" className="form-label"> Color</label>
-
                           <div>
                             {newcolor && newcolor.map((val, index) => (
                               <span key={index} className="badge bg-primary me-2 mb-2 ">
                                 <span className="badge bg-primary  " style={{ fontSize: '15px' }} >
                                   {val}
                                 </span>
-
                                 <CloseIcon onClick={() => removeColor(index)} className=' bg-danger text-white  mb-1' style={{ height: '20px', width: '20px' }} />
-
                               </span>
 
                             ))
@@ -270,47 +257,18 @@ const Addprod = () => {
                         <div className="mb-3">
                           <label className="form-label" htmlFor="ecommerce-product-price">Base Price</label>
                           <input type="number" value={prize} onChange={(e) => handlepriseChange(e)} className="form-control" id="ecommerce-product-price" placeholder="Price" name="productPrice" aria-label="Product price" />
-                        </div>
-                        {/* Discounted Price */}
-                        <div className="mb-3">
-                          <label className="form-label" htmlFor="ecommerce-product-discount-price">Discounted Price</label>
-                          <input type="number" className="form-control" id="ecommerce-product-discount-price" placeholder="Discounted Price" name="productDiscountedPrice" aria-label="Product discounted price" />
-                        </div>
-                        {/* Charge tax check box */}
-                        <div className="form-check mb-2">
-                          <input className="form-check-input" type="checkbox" defaultValue id="price-charge-tax" defaultChecked />
-                          <label className="form-label" htmlFor="price-charge-tax">
-                            Charge tax on this product
-                          </label>
-                        </div>
-                        {/* Instock switch */}
-                        <div className="d-flex justify-content-between align-items-center border-top pt-3">
-                          <span className="mb-0 h6">In stock</span>
-                          <div className="w-25 d-flex justify-content-end">
-                            <label className="switch switch-primary switch-sm me-4 pe-2">
-                              <input type="checkbox" className="switch-input" defaultChecked />
-                              <span className="switch-toggle-slider">
-                                <span className="switch-on">
-                                  <span className="switch-off" />
-                                </span>
-                              </span>
-                            </label>
-                          </div>
-                        </div>
+                        </div>    
                       </div>
                     </div>
-                    {/* /Pricing Card */}
-                    {/* Organize Card */}
                     <div className="card mb-4">
                       <div className="card-header">
                         <h5 className="card-title mb-0"> Type</h5>
                       </div>
-                      <div className="card-body">
-                        {/* Vendor */}
+                      <div className="card-body">         
                         <div className="mb-3 col ecommerce-select2-dropdown">
                           <label className="form-label mb-1" >
                             Product Type
-                          </label>
+                          </label>         
                         </div>
                         <select className="form-select mb-2" onChange={(e) => settype(e.target.value)}>
                           <option >{type}</option>
@@ -326,23 +284,13 @@ const Addprod = () => {
                         {/* Status */}
                       </div>
                     </div>
-
                   </div>
-
                 </div>
               </div>
             </div>
-
-
-            {/* <div className="content-backdrop fade" /> */}
           </div>
-          {/* Content wrapper */}
         </div>
-
       </main>
-
-
-
       <Footer />
     </div>
   )

@@ -29,13 +29,10 @@ const Navbar = () => {
                                     {/* <NavLink className="nav-link" to='/'>Travel expense</NavLink> */}
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to='/'>Products</NavLink>
+                                    <NavLink className="nav-link" to='/product'>Products</NavLink>
                                 </li>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to='/add'>Add Product</NavLink>
-                                </li>
-                                <li className="nav-item">
-                                    <NavLink className="nav-link" to='/profile'>Profile</NavLink>
+                                    {/* <NavLink className="nav-link" to='/profile'>Profile</NavLink> */}
                                 </li>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to='/Order'>Order</NavLink>
@@ -47,7 +44,7 @@ const Navbar = () => {
                         {auth ? (
                             <>
                                 <li className="nav-item">
-                                    <NavLink className="nav-link" to='/favorites'><FavoriteIcon /></NavLink>
+                                    {/* <NavLink className="nav-link" to='/favorites'><FavoriteIcon /></NavLink> */}
                                 </li>
                                 <li className="nav-item">
                                     <NavLink className="nav-link" to='/cart'><AddCardIcon /></NavLink>

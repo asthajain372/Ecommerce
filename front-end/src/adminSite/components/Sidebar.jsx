@@ -1,9 +1,14 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import Profile from '../../pages/Profile'
-
+import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    localStorage.clear();
+    navigate('/signup');
+  }
   return (
     <div>
       {/* ======= Sidebar ======= */}
@@ -14,7 +19,7 @@ const Sidebar = () => {
               <i className="bi bi-grid" />
               <span>Dashboard</span>
             </Link>
-          </li>{/* End Dashboard Nav */}
+          </li>
 
           <li className="nav-item">
             <a className="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
@@ -25,25 +30,12 @@ const Sidebar = () => {
               <Link style={{ textDecoration: 'none' }} to='/Listprod'>
                 <i className="bi bi-circle" />  <span    >  Product List</span>
               </Link>
-              {/* <Link  to='/Listprod'>
-          <i className="bi bi-circle" /> <span  to='/Listprod'   >  Product List</span>
-          </Link> */}
 
               <Link style={{ textDecoration: 'none' }} to='/Addprod' href="tables-data.html">
                 <i className="bi bi-circle" /> <span style={{ TextDecoration: 'none' }}  > Add Product</span>
               </Link>
-
-              {/* <Link  style={{ textDecoration: 'none' }}  to='/'   href="tables-data.html">
-        <i className="bi bi-circle" /> <span  style={{TextDecoration:'none'}}  > Category List</span>
-        </Link> */}
-
-
-
             </ul>
-
-
-          </li>{/* End Tables Nav */}
-
+          </li>
 
           <li className="nav-item">
             <a className="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
@@ -56,7 +48,7 @@ const Sidebar = () => {
                 </Link>
               </li>
             </ul>
-          </li>{/* End Forms Nav */}
+          </li>
 
           <li className="nav-item">
 
@@ -72,69 +64,35 @@ const Sidebar = () => {
             </ul>
           </li>
 
-          {/* <li className="nav-item">
-            <a style={{ textDecoration: 'none' }} className="nav-link collapsed" href="pages-contact.html">
-              <Link style={{ textDecoration: 'none' }} to='/message' >
-                <i className="bi bi-envelope" /><span> Messages</span>
-              </Link>
-            </a>
-          </li> */}
-
-
-    
           <li className="nav-item">
-            <Link to='/message'  className="nav-link collapsed">
+            <Link to='/message' className="nav-link collapsed">
               <i className="bi bi-envelope" />
               <span>Messages</span>
             </Link>
-          </li>{/* End F.A.Q Page Nav */}
+          </li>
 
-
-          <li className="nav-item">
-    
-
-      <Link to='/profile'  className="nav-link collapsed">
+          {/* <li className="nav-item">
+            <Link to='/profile'  className="nav-link collapsed">
               <i className="bi bi-person" />
               <span>Profile</span>
             </Link>
-    
-          </li>{/* End Profile Page Nav */}
-
-          
+          </li> */}
 
           <li className="nav-item">
-            <Link to='/message'  className="nav-link collapsed">
-              <i className="bi bi-question-circle" />
-              <span>F.A.Q</span>
-            </Link>
-          </li>{/* End F.A.Q Page Nav */}
-
-          <li className="nav-item">
-            <a className="nav-link collapsed" href="pages-register.html">
-              <i className="bi bi-card-list" />
-              <span>Register</span>
-            </a>
-          </li>{/* End Register Page Nav */}
-          <li className="nav-item">
-            <a className="nav-link collapsed" href="pages-login.html">
+            <Link to='/product' className="nav-link collapsed">
               <i className="bi bi-box-arrow-in-right" />
-              <span>Login</span>
-            </a>
-          </li>{/* End Login Page Nav */}
+              <span>Visit Front site </span>
+            </Link>
+          </li>
+
           <li className="nav-item">
-            <a className="nav-link collapsed" href="pages-error-404.html">
-              <i className="bi bi-dash-circle" />
-              <span>Error 404</span>
-            </a>
-          </li>{/* End Error 404 Page Nav */}
-          <li className="nav-item">
-            <a className="nav-link collapsed" href="pages-blank.html">
-              <i className="bi bi-file-earmark" />
-              <span>Blank</span>
-            </a>
-          </li>{/* End Blank Page Nav */}
+            <Link to='/' className="nav-link collapsed">
+              <i className="bi bi-box-arrow-in-left" />
+              <span onClick={handleLogout} style={{ cursor: 'pointer' }}  >Logout</span>
+            </Link>
+          </li>
         </ul>
-      </aside>{/* End Sidebar*/}
+      </aside>
     </div>
   )
 }

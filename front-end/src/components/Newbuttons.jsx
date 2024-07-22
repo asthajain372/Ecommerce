@@ -1,16 +1,12 @@
 import React, { useEffect } from 'react'
 import '../App.css'
 import { useState } from 'react'
-import Filterdprod from './Filterdprod';
 import { useDispatch, useSelector } from 'react-redux';
 import { productreducer } from '../features/slice/productSlice';
 import { Link } from 'react-router-dom';
-import RightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
-import { UseSelector } from 'react-redux'
 import { Card, Button } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { singlereducer } from '../features/slice/productSlice';
-import { addcard } from '../features/slice/cardSlice';
 
 const Newbuttons = () => {
 
@@ -23,7 +19,7 @@ const Newbuttons = () => {
     const singleproduct = singledata.filter(data => data._id === param.id)
     const [size, setsize] = useState('');
     const [color, setcolor] = useState('');
-
+const [product , setproduct ]= useState([]);
     console.log(color);
     const data = useSelector((state) => state.productSlice.filtredProduct);
     console.log(data);
@@ -39,6 +35,20 @@ const Newbuttons = () => {
             dispatch(productreducer(data[0].type));
         }
     }
+    async function getproduct(id){
+        let result = await fetch(`${process.env.REACT_APP_SITE_URL}/product`);
+        result = await result.json();
+        if(result){
+            setproduct(result);
+            // alert("record is deleted");
+            // localStorage.setItem('productdata',JSON.stringify(result));
+            // dispatch(productreducer(data[0].type));
+        }
+    }
+
+    useEffect(()=>{
+        getproduct();
+    })
 
     const button = [
         "Hoodies",
@@ -66,7 +76,7 @@ const Newbuttons = () => {
                     );
                 })}
             </div>
-            <div className=' container filterprod'>
+            <div className=' filterprod' style={{maxWidth:"1000px" , margin:'auto'}} >
                 <div className="row">
                     {data ?
                         (
@@ -95,7 +105,29 @@ const Newbuttons = () => {
                             </div>
                         )
                         :
-                        null
+                        <div>
+                        <div className="row">
+                            {data.map((val) => (
+                                <div className="col-md-4 mb-3" key={val._id}>
+                                    <Card >
+                                        {/* <Card.Img variant="top" src={val.img} style={{ height: '200px', objectFit: 'cover' }} /> */}
+                                        <Card.Img variant="top" src={`${process.env.REACT_APP_SITE_URL}/public/images/${val.url}`} style={{ height: '200px', objectFit: 'cover' }} />
+                                        <Card.Body>
+                                            <Card.Title>{val.url}</Card.Title>
+                                            <Card.Text>Type: {val.type}</Card.Text>
+                                            <Card.Text>{val.text}</Card.Text>
+                                            <Card.Text>Price: ${val.prize}</Card.Text>
+                                         
+                                            <Link style={{ textDecoration: 'none' }} to={val._id}  >
+                                                <Button onClick={() => dispatch(singlereducer(val._id))}  > view Product </Button>
+                                            </Link>
+
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                     }
                 </div>
             </div>

@@ -14,8 +14,10 @@ const Usermodel =  new mongoose.Schema({
         type:String,
         required:true
     },
+    url:{
+        type:String
+    },
     type:String ,
-
     roles:[{type:mongoose.Schema.Types.ObjectId, ref:'Roles' }]
 }, { timestamps: true });
 

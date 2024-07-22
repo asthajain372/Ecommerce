@@ -70,7 +70,6 @@ async function updateproduct(req, res){
     );
 
     if (updatedData) {
-        console.log('Updated data:', updatedData);
         res.status(200).json({ message: 'Product updated successfully', updatedData });
     } else {
         res.status(404).json({ message: 'Product not found' });

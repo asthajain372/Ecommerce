@@ -25,10 +25,6 @@ const Customer = () => {
   }, [])
 
   const columns = [
-    // {
-    //   name: "OrderId",
-    //   selector: (row) => row._id,
-    // },
     {
       name: "UserId",
       selector: (row) => row._id,
@@ -37,8 +33,6 @@ const Customer = () => {
       name: "User Type",
       selector: (row) => row.type,
     },
-
-
     {
       name: "User Email",
       selector: (row) => row.email,
@@ -51,26 +45,6 @@ const Customer = () => {
       name: "Registered on",
       selector: (row) => row.createdAt.split('T')[0]
     },
- 
-    // {
-    //   name: "Total Amount",
-    //   selector: (row) => {
-    //     const totalAmount = row.products.reduce((total, product) => total + parseFloat(product.prize), 0);
-    //     return `₹ ${totalAmount.toFixed(2)}`; // Assuming you want to display total with 2 decimal places
-    //   }
-    // },
-    // {
-    //   name: "Address",
-    //   selector: (row) => `${row.address.postal_code} ${row.address.line1}  ${row.address.city}`,
-    // },
-    // {
-    //   name: "Action",
-    //   cell: (row) => (
-    //     <Link style={{ textDecoration: 'none' }} to={`/userdetails/${row._id}`} >
-    //       <Button > Details </Button>
-    //     </Link>)
-    // },
-
   ];
 
   function downloadXLS() {
@@ -84,10 +58,9 @@ const Customer = () => {
   return (
     <div>
       <Sidebar />
-      <Header />
       <main id="main" className="main">
+      <Header />
         <div className="pagetitle">
-          {/* <h1>Profile</h1> */}
           <nav>
             <ol className="breadcrumb">
               <li className="breadcrumb-item"><Link to='/'>Home</Link></li>
@@ -111,8 +84,6 @@ const Customer = () => {
                     <div>
                       <Button style={{ marginTop: '7px' }} onClick={() => downloadXLS()}>Export</Button>
                     </div>
-
-
                   </div>
                 </div>
               </div>
@@ -121,7 +92,7 @@ const Customer = () => {
                 pagination
                 fixedHeader
                 fixedHeaderScrollHeight='465px'
-                selectableRows
+                // selectableRows
                 selectableRowsHighlight
                 highlightOnHover
               />

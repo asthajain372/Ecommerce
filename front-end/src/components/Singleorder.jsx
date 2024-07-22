@@ -9,10 +9,14 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { Alert } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 
 export default function Singleorder() {
+
+  const user = JSON.parse(localStorage.getItem('user'));
+
   const [orders, setorders] = useState([]);
   const [single_prod, setsingle_prod] = useState([]);
   const [related_prod, setrelated_prod] = useState([]);
@@ -58,7 +62,7 @@ export default function Singleorder() {
                 <MDBCardHeader className="px-4 py-5">
                   <MDBTypography tag="h5" className="text-muted mb-0">
                     Thanks for your Order,{" "}
-                    <span style={{ color: "#a8729a" }}>Anna</span>!
+                    <span style={{ color: "#a8729a" }}>{user.name}</span> !
                   </MDBTypography>
                 </MDBCardHeader>
                 <MDBCardBody className="p-4">
@@ -70,7 +74,7 @@ export default function Singleorder() {
                       Receipt
                     </p>
                     <p className="small text-muted mb-0">
-                      Receipt Voucher : 1KAU9-84UIL
+                      order Id : {params.orderid}
                     </p>
                   </div>
                   <MDBCard className="shadow-0 border mb-4" >
@@ -120,12 +124,11 @@ export default function Singleorder() {
                   </MDBCard>
 
 
-                  <br />
-                  other product in the same order
-                  <br />
+             
 
                   {
                     // Array.isArray(single_prod) && single_prod.map((order) => (
+                      
 
                     related_prod.map((product) => {
                       console.log(product)
@@ -135,7 +138,12 @@ export default function Singleorder() {
 
 
                           {/* <Link   to={`/order/${order._id}/${product._id}/${product.product_id}`}   style={{ textDecoration: 'none', color: 'black' }} > */}
-
+                          {/* <br />
+                  other product in the same order
+                  <br /> */}
+                  <Alert variant="info" className="text-center my-3">
+      Other products in the same order
+    </Alert>
                           <MDBCard className="shadow-0 border mb-4"   >
 
                             <MDBCardBody>
@@ -224,7 +232,7 @@ export default function Singleorder() {
 
 
 
-                  <div className="d-flex justify-content-between pt-2">
+                  {/* <div className="d-flex justify-content-between pt-2">
                     <p className="fw-bold mb-0">Order Details</p>
                     <p className="text-muted mb-0">
                       <span className="fw-bold me-4">Total</span> $898.00
@@ -256,7 +264,9 @@ export default function Singleorder() {
                       <span className="fw-bold me-4">Delivery Charges</span>{" "}
                       Free
                     </p>
-                  </div>
+                  </div> */}
+
+                  
                 </MDBCardBody>
                 <MDBCardFooter
                   className="border-0 px-4 py-5"
@@ -270,7 +280,7 @@ export default function Singleorder() {
                     tag="h5"
                     className="d-flex align-items-center justify-content-end text-white text-uppercase mb-0"
                   >
-                    Total paid: <span className="h2 mb-0 ms-2">$1040</span>
+                    {/* Total paid: <span className="h2 mb-0 ms-2"> </span> */}
                   </MDBTypography>
                 </MDBCardFooter>
               </MDBCard>

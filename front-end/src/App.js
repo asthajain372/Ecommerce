@@ -49,8 +49,6 @@ function App() {
         <Route path="/Addprod" Component={() => <Protected  Prop={Addprod}  />}></Route>
         <Route path="/Listorder" Component={() => <Protected  Prop={Listorder}  />}></Route>
         <Route path="/orderdetail/:id" Component={() => <Protected  Prop={Orderdetail}  />}></Route>
-
-        
       </Routes>
     </BrowserRouter>  
     </div>

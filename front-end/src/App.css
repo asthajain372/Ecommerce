@@ -1,3 +1,52 @@
+
+
+
+.chat-header {
+  background-color: #343a40; /* Bootstrap dark color */
+  color: white;
+  padding: 10px 20px;
+  border-bottom: 1px solid #343a40;
+}
+
+.chat-header-content {
+  display: flex;
+  align-items: center;
+}
+
+.chat-header-label {
+  font-size: 1.2em;
+  color: #999999;
+  margin-right: 10px;
+}
+
+.chat-header-name {
+  font-size: 1.5em;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+
+
+.mobile-nav > li  {
+  /* padding-top: 30px; */
+padding-left: 20px;
+padding-right: 20px;
+}
+
+@media (min-width: 1200px) {
+  .navbar-collapse {
+    display: none !important; /* Hide the content by default on xxl screens */
+  }
+
+  .navbar-expand-xl .navbar-toggler {
+    display: none; /* Hide the toggler button on xxl screens */
+  }
+
+  .navbar-expand-xl .navbar-collapse.collapse.show {
+    display: block !important; /* Force the collapse content to show on xxl screens */
+  }
+}
+
 .App {
   text-align: center;
 }

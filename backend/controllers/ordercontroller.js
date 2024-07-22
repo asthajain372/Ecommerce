@@ -15,7 +15,6 @@ async function getorders (req , res){
 async function ordercount(req, res) {
     try {
         const params = req.params.day;
-        // console.log(params);
 
         let startDate, endDate = moment().toDate();
         let previousStartDate, previousEndDate;
@@ -31,7 +30,6 @@ async function ordercount(req, res) {
             previousEndDate = moment().subtract(1, 'weeks').endOf('isoWeek').toDate();
           } else if (params === 'month') {
             startDate = moment().startOf('month').toDate();
-            console.log("startDate",startDate);
             previousStartDate = moment().subtract(1, 'months').startOf('month').toDate();
             previousEndDate = moment().subtract(1, 'months').endOf('month').toDate();
         } else if (params === 'year') {
@@ -244,7 +242,6 @@ const customOrderchart = async (req, res) => {
     const start = req.params.start;
     const end = req.params.end;
 
-    console.log("start" , end);
 
     // Validate start and end dates
     if (!start || !end) {
@@ -295,7 +292,6 @@ const calculateTotalPrice = async (req, res) => {
     const { range } = req.params;
     const { start, end } = req.params;
 
-    console.log(start , end , range);
     let labels = [];
     let startDate = moment().subtract(12, range).toDate();
     let endDate = new Date();
@@ -321,21 +317,17 @@ const calculateTotalPrice = async (req, res) => {
         return acc;
       }, {});
 
-      // console.log("mappedData", mappedData);
 
       orders.forEach((order) => {
         const orderDate = moment(order.createdAt);
-        console.log(orderDate);
         const label = range === 'day' ? orderDate.format('YYYY-MM-DD') :
                       range === 'week' ? `week-${orderDate.format('W-YYYY')}` :
                       orderDate.format('MMM-YYYY');
 
-                      // console.log(label); 
 
         if (mappedData[label] !== undefined) {
           order.products.forEach((product) => {
             mappedData[label] += product.prize * product.amount;
-            // console.log(mappedData[label]);
           });
         }
       });

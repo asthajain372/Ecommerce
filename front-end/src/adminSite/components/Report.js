@@ -1,6 +1,5 @@
 import React from 'react'
-import ApexCharts from 'react-apexcharts';
-import { Line, Pie } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useState, useEffect } from 'react';
@@ -13,7 +12,6 @@ import {
   Title,
   Tooltip,
   Legend,
-  ArcElement
 } from 'chart.js';
 
 ChartJS.register(
@@ -26,12 +24,9 @@ ChartJS.register(
   Legend
 );
 
-
 export const Report = () => {
   const SITE_URL = process.env.REACT_APP_SITE_URL;
 
-
-  const [chartData, setChartData] = useState({ labels: [], datasets: [] });
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [customRangeVisible, setCustomRangeVisible] = useState(false);
@@ -117,9 +112,6 @@ export const Report = () => {
 
   const [custom_range, setcustom_range] = useState('month');
 
-  const handleCustomRange = () => {
-    setCustomRangeVisible(false);
-  };
 
   const handleCustomcharts = () => {
     handle_order_chart();
@@ -203,14 +195,6 @@ export const Report = () => {
               <div className="dropdown-item" href="#" onClick={() => handlecharts('week')} > last 12 Weeks</div>
               <div className="dropdown-item" href="#" onClick={() => handlecharts('month')} >This Year</div>
               <div className="dropdown-item" href="#" onClick={() => setCustomRangeVisible(true)} >Custom Range</div>
-              {/* <li><a className="dropdown-item" href="#" onClick={() => handlecharts('day')} >Last 12 days</a></li>
-              <li><a className="dropdown-item" href="#" onClick={() => handlecharts('week')} > last 12 Weeks</a></li>
-              <li><a className="dropdown-item" href="#" onClick={() => handlecharts('month')}>This Year</a></li>
-              <li><a className="dropdown-item" href="#" onClick={() => setCustomRangeVisible(true)}>Custom Range</a></li> */}
-              {/* <li><a className="dropdown-item" href="#" onClick={() => handlecharts('day')} >Last 12 days</a></li>
-              <li><a className="dropdown-item" href="#" onClick={() => handlecharts('week')} > last 12 Weeks</a></li>
-              <li><a className="dropdown-item" href="#" onClick={() => handlecharts('month')}>This Year</a></li>
-              <li><a className="dropdown-item" href="#" onClick={() => setCustomRangeVisible(true)}>Custom Range</a></li> */}
 
             </ul>
           </div>

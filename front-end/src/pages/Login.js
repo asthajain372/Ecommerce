@@ -3,12 +3,23 @@ import '../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useEffect } from 'react';
+
 const Login = () => {
   const[email , setemail ] = useState('');
   const [password  , setpassword ] = useState('');
   const navigate = useNavigate();
-async function handledata(){
 
+  const Navigate = useNavigate();
+  const isLoggedIn = localStorage.getItem('user'); // Assuming you store user info in localStorage
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      Navigate('/');
+    }
+  }, [isLoggedIn, Navigate]);
+
+async function handledata(){
   // console.log(name , password);
   const credential = { email , password }  ;
   // console.log(data);
@@ -33,7 +44,7 @@ async function handledata(){
     // localStorage.setItem('user',JSON.stringify(data.existinguser) );
     console.log(data.existinguser.roles[0].roles);
     if(data.existinguser.roles[0].roles == 'Buyer'){
-      navigate('/product');
+      navigate('/');
     }else{
       navigate('/admin/Dashboard');
     }
@@ -75,10 +86,6 @@ async function handledata(){
                 </div>
 
                 <p className="text-center text-muted mt-5 mb-0">Don't Have an account? 
-                
-                {/* <a href="#!"
-                    className="fw-bold text-body"><u>SignUp here</u></a> */}
-          
                     <Link className="fw-bold text-body" to='/signup' > SignUp here </Link>                    
                     </p>
               </form>

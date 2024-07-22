@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
-const app = express();
+// const app = express();
 require('./db/config');
 const usermodel = require('./db/User');
 const auth = require('./controllers/auth');
@@ -12,11 +12,16 @@ const { addRole } = require('./controllers/rolescontroller');
 const { paymethod ,orderdata } = require('./controllers/stripe');
 const {addproduct , getproduct , deleteproduct ,updateproduct , getsingleproduct } = require('./controllers/productcontroller');
 const {getorders , ordercount , orderamount , orderchart ,customOrderchart , calculateTotalPrice} = require('./controllers/ordercontroller');
-const { getusers , usercount , calculateUserCount  } = require('./controllers/usercontroller');
+const { getusers , getUsersForSidebar , usercount , calculateUserCount  } = require('./controllers/usercontroller');
+const {sendmessage ,getmessages } = require('./controllers/messagecontroller');
+const verifyToken = require('./middleware/protectedRoute');
+
+// import { app } from './socket';
+const {app , server } = require('./socket');
+
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
-console.log(process.env.REACT_APP_SITE_URL);
 
 const port = process.env.PORT ;
 const storage = multer.diskStorage({
@@ -63,7 +68,13 @@ app.get('/singleproduct/:id',getsingleproduct);
 app.put('/update/:newid', upload.single('file')  , updateproduct);
 app.post('/api/create-checkout-session', paymethod);
 app.get('/order/success', orderdata );
-app.listen(port, () => {
+
+app.post('/send/:id'  , verifyToken ,  sendmessage );
+app.get('/getmessages/:id' , verifyToken , getmessages );
+
+app.get('/chatuser' , verifyToken , getUsersForSidebar );
+
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
