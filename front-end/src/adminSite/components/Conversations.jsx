@@ -6,7 +6,6 @@ import {setSelectedConversation } from '../../features/slice/conversationSlice';
 export const Conversations = () => {
   const dispatch = useDispatch();
    const selectedConversation = useSelector((state) => state.conversationSlice.selectedConversation);
-    console.log("selectedConversation", selectedConversation);
   const [users, setusers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const { onlineUsers } = useSocketContext();

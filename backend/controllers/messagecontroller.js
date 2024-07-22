@@ -1,6 +1,6 @@
 // const MesssageModel = require('../db/Message');
 const MesssageModel = require('../db/Message');
-const Conversation  = require('../db/conversation');
+const Conversation = require('../db/Conversation');
 const usermodel = require('../db/User');
 // const getReceiverSocketId = require('socket.io');
 const {getReceiverSocketId  } = require('../socket');
