@@ -11,9 +11,9 @@ const FRONT_URL = process.env.FRONT_URL ;
 const server = http.createServer(app);
 const io = new Server(server, {
 	cors: {
-		origin: [`${FRONT_URL}`],
+		// origin: [`${FRONT_URL}`],
 		// origin: ["http://localhost:3000"],
-		// origin: ["https://prime-ecomart.netlify.app"],
+		origin: ["https://prime-ecomart.netlify.app"],
 		methods: ["GET", "POST"],
 	},
 });
