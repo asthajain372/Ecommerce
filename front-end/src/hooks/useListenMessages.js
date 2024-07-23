@@ -11,6 +11,7 @@ const useListenMessages = () => {
 
     const selectedConversation = useSelector((state) => state.conversationSlice.messages);
     const [messages, setMessages] = useState(selectedConversation || []);
+// console.log(selectedConversation);
 
     useEffect(() => {
         // Handler for new messages

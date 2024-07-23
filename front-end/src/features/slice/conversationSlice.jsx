@@ -12,7 +12,7 @@ const conversationSlice = createSlice({
   reducers: {
     setSelectedConversation: (state, action) => {
       state.selectedConversation = action.payload;
-
+      console.log("sssssssssss", action.payload);
     },
     setMessages: (state, action) => {
       state.messages = action.payload;
