@@ -6,6 +6,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
 
   function handleLogout() {
+    console.log("called");
     localStorage.clear();
     navigate('/signup');
   }

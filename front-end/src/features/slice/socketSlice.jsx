@@ -13,9 +13,16 @@ const socketSlice = createSlice({
             // console.log(action.payload);
             const data = action.payload;
             state.OnlineUsers = data; 
+            // console.log(action.payload , "acrioncccc");
+        },
+        socketreducer( state , action ){
+            // console.log(action.payload);
+            const data = action.payload;
+            state.Socketconnect = data; 
+            console.log(action.payload, "sovvvvvvvvvv");
         },
     }
 })
 
-export const { useronlinereducer  } = socketSlice.actions
+export const { useronlinereducer , socketreducer  } = socketSlice.actions
 export default socketSlice.reducer

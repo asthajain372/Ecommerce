@@ -19,14 +19,27 @@ const Header = () => {
       setDatarole('defaultRole'); // Or leave it empty or set a different default value
     }
   }, []);
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    setauthuser(user);
+    const user = localStorage.getItem('user');
+    if (user) {
+      try {
+        const parsedUser = JSON.parse(user);
+        setauthuser(parsedUser);
+        } catch (error) {
+            console.error('Failed to parse user from localStorage:', error);
+        }
+    }
+
+
   }, []);
   
+
+
+
+
 
   function handleLogout() {
     localStorage.clear();

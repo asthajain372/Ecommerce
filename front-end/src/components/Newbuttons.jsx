@@ -35,8 +35,9 @@ const [product , setproduct ]= useState([]);
             dispatch(productreducer(data[0].type));
         }
     }
-    async function getproduct(id){
+    async function getproduct(){
         let result = await fetch(`${process.env.REACT_APP_SITE_URL}/product`);
+
         result = await result.json();
         if(result){
             setproduct(result);
@@ -107,7 +108,7 @@ const [product , setproduct ]= useState([]);
                         :
                         <div>
                         <div className="row">
-                            {data.map((val) => (
+                            {product.map((val) => (
                                 <div className="col-md-4 mb-3" key={val._id}>
                                     <Card >
                                         {/* <Card.Img variant="top" src={val.img} style={{ height: '200px', objectFit: 'cover' }} /> */}

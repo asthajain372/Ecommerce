@@ -7,15 +7,18 @@ import { Provider, useSelector } from 'react-redux';
 import store from './app/store';
 import Dash from './pages/Dash';
 import { SocketContextProvider } from './context/SocketContext';
+import { AuthContextProvider } from './context/AuthContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-<SocketContextProvider>
-    <App />
-</SocketContextProvider>
-    {/* <Dash /> */}
-  </Provider>
+      <AuthContextProvider>
+        <SocketContextProvider>
+          <App />
+          {/* <Dash /> */}
+        </SocketContextProvider>
+      </AuthContextProvider>
+    </Provider>
   </React.StrictMode>
 );
 

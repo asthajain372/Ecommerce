@@ -5,7 +5,10 @@ import notificationSound from '../assets/sounds/notification.mp3'
 
 
 const useListenMessages = () => {
+
     const { socket } = useSocketContext();
+    // const socket = useSelector((state) => state.socketSlice.Socketconnect);
+
     const selectedConversation = useSelector((state) => state.conversationSlice.messages);
     const [messages, setMessages] = useState(selectedConversation || []);
 

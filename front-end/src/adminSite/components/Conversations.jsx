@@ -9,7 +9,9 @@ export const Conversations = () => {
   const [users, setusers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
   const { onlineUsers } = useSocketContext();
-  
+  // const onlineUsers = useSelector((state) => state.socketSlice.OnlineUsers);
+  // console.log(onlineUsers, "authUserauthUserauthUser");
+
   async function get_users() {
 
     const token = JSON.parse(localStorage.getItem('token'));
