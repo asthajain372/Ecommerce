@@ -12,12 +12,12 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <AuthContextProvider>
-        <SocketContextProvider>
+      {/* <AuthContextProvider> */}
+        {/* <SocketContextProvider> */}
           <App />
           {/* <Dash /> */}
-        </SocketContextProvider>
-      </AuthContextProvider>
+        {/* </SocketContextProvider> */}
+      {/* </AuthContextProvider> */}
     </Provider>
   </React.StrictMode>
 );

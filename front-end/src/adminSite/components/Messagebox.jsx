@@ -12,7 +12,9 @@ export const Messagebox = () => {
   const [message, setMessage] = useState("");
   const userdata = useSelector((state) => state.messageslice.selectedConversation);
   const [Authuser, setAuthuser] = useState('');
-  const { onlineUsers } = useSocketContext();
+
+  // const { onlineUsers } = useSocketContext();
+  const onlineUsers = useSelector((state) => state.socketSlice.OnlineUsers);
 
   const lastMessageRef = useRef();
   useEffect(() => {
@@ -57,7 +59,7 @@ export const Messagebox = () => {
                 />
                 <div>
                   <span className="fs-5 ps-3 fw-bold">{userdata.name}</span>
-                  <div className=" ps-3 "> {onlineUsers.includes(userdata._id) ? 'online' : 'offline'}</div>
+                  <div className=" ps-3 ">   {(onlineUsers && onlineUsers.includes(userdata._id)) ? 'online' : 'offline'}</div>
                 </div>
               </div>
             </Col>

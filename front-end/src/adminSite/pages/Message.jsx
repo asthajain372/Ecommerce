@@ -51,12 +51,12 @@ const Message = () => {
             });
 
             setSocket(socket);
-            // dispatch(socketreducer(socket));
+            dispatch(socketreducer(socket));
 
             // Listen for 'getOnlineUsers' event from the server
             socket.on('getOnlineUsers', (users) => {
                 setOnlineUsers(users);
-                //   dispatch(useronlinereducer(users));
+                  dispatch(useronlinereducer(users));
 
                 console.log(users , "userrrrrrrrrrrrrrr");
             });
@@ -71,7 +71,6 @@ const Message = () => {
         }
     }, [authUser]);
     
-
 
     return (
         <>

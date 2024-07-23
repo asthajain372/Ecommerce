@@ -8,8 +8,9 @@ export const Conversations = () => {
    const selectedConversation = useSelector((state) => state.conversationSlice.selectedConversation);
   const [users, setusers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
-  const { onlineUsers } = useSocketContext();
-  // const onlineUsers = useSelector((state) => state.socketSlice.OnlineUsers);
+  // const { onlineUsers } = useSocketContext();
+  // console.log(onlineUsers,"onlineUsers");
+  const onlineUsers = useSelector((state) => state.socketSlice.OnlineUsers);
   // console.log(onlineUsers, "authUserauthUserauthUser");
 
   async function get_users() {
