@@ -73,6 +73,7 @@ export const Messagebox = () => {
         ref={lastMessageRef}
         className="pt-3 pe-4 ps-2 "
       >
+
         {
           messages && messages.length > 0 ? (
             messages.map((chatItem) => {
@@ -174,8 +175,6 @@ export const Messagebox = () => {
             "send messages to start the conversation"
           )
         } */}
-
-
       </div>
 
       <div className="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">

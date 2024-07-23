@@ -69,7 +69,7 @@ const Message = () => {
             socket.close();
             setSocket(null);
         }
-    }, [authUser]);
+    }, []);
     
 
     return (
