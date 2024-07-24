@@ -22,14 +22,8 @@ const Header = () => {
             console.error('Failed to parse user from localStorage:', error);
         }
     }
-
-
   }, []);
   
-
-
-
-
 
   function handleLogout() {
     localStorage.clear();
