@@ -53,7 +53,7 @@ const Singleprod = () => {
                         <p><strong>Type:</strong> {val.type}</p>
                             {/* <p><strong>Available Sizes:</strong> {val.size.join(", ")}</p> */}
                             <p><strong>Available Colors:</strong> {val.color.join(", ")}</p>
-                            <p><strong>Price:</strong> ${val.prize}</p>
+                            <p><strong>Price:</strong> ₹{val.prize}</p>
 
 
                             <p>{val.text}</p>

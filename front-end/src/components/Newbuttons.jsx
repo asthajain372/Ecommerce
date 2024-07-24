@@ -117,7 +117,7 @@ const [product , setproduct ]= useState([]);
                                             <Card.Title>{val.url}</Card.Title>
                                             <Card.Text>Type: {val.type}</Card.Text>
                                             <Card.Text>{val.text}</Card.Text>
-                                            <Card.Text>Price: ${val.prize}</Card.Text>
+                                            <Card.Text>Price: ₹{val.prize}</Card.Text>
                                          
                                             <Link style={{ textDecoration: 'none' }} to={val._id}  >
                                                 <Button onClick={() => dispatch(singlereducer(val._id))}  > view Product </Button>

@@ -6,19 +6,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const [authuser, setauthuser] = useState('');
-  const [datarole, setDatarole] = useState('');
+  // const [datarole, setDatarole] = useState('');
 
-  useEffect(() => {
-    const roles = JSON.parse(localStorage.getItem('roles'));
 
-    if (roles && Array.isArray(roles) && roles.length > 0) {
-      setDatarole(roles[0].roles);
-    } else {
-      console.log('No roles found in localStorage');
-      // You can handle the case when roles are not found as needed
-      setDatarole('defaultRole'); // Or leave it empty or set a different default value
-    }
-  }, []);
 
   const navigate = useNavigate();
 
@@ -95,7 +85,7 @@ const Header = () => {
                 <li>
                   <a className="dropdown-item d-flex align-items-center" >
                     <i className="bi bi-person" />
-                    <span>{datarole}</span>
+                    <span>{authuser.type}</span>
                   </a>
                 </li>
                 {/* <li>
