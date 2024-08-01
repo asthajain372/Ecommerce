@@ -73,13 +73,6 @@ const Sidebar = () => {
             </Link>
           </li>
 
-          {/* <li className="nav-item">
-            <Link to='/profile'  className="nav-link collapsed">
-              <i className="bi bi-person" />
-              <span>Profile</span>
-            </Link>
-          </li> */}
-
           <li className="nav-item">
             <Link to='/product' className="nav-link collapsed">
               <i className="bi bi-box-arrow-in-right" />

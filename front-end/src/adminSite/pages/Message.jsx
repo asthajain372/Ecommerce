@@ -56,9 +56,9 @@ const Message = () => {
             // Listen for 'getOnlineUsers' event from the server
             socket.on('getOnlineUsers', (users) => {
                 setOnlineUsers(users);
-                  dispatch(useronlinereducer(users));
+                dispatch(useronlinereducer(users));
 
-                console.log(users , "userrrrrrrrrrrrrrr");
+                console.log(users, "userrrrrrrrrrrrrrr");
             });
             // Cleanup function to close the socket connection when component unmounts
             return () => {
@@ -70,7 +70,7 @@ const Message = () => {
             setSocket(null);
         }
     }, []);
-    
+
 
     return (
         <>
@@ -95,18 +95,8 @@ const Message = () => {
                                     <MDBCard id="chat3" style={{ borderRadius: "15px" }}>
                                         <MDBCardBody>
                                             <MDBRow>
-                                                {/* <MDBCol md="6" lg="5" xl="5" className="mb-4 mb-md-0 p-0">
-                                                    <div className="p-3">
-                                                        <div style={{ overflowY: 'scroll', position: "relative", height: "500px" }}
-                                                        >
-                                                            <MDBTypography listUnStyled className="mb-0"> */}
-                                                                {/* section 1 */}
-                                                                <Conversations />
+                                                <Conversations />
 
-                                                            {/* </MDBTypography>
-                                                        </div>
-                                                    </div>
-                                                </MDBCol> */}
                                                 <MDBCol md="6" lg="7" xl="7" className='p-0'  >
                                                     {/* section 2 */}
                                                     {!selectedchat ? (

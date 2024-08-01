@@ -126,55 +126,6 @@ export const Messagebox = () => {
             ""
           )}
 
-          
-        {/* {
-          messages && messages.length > 0 ? (
-            messages.map((chatItem) => (
-              chatItem.receiverId != Authuser._id ? 
-              
-              (
-                <div key={chatItem.id} className="d-flex flex-row justify-content-end">
-                  <div>
-                    <p className="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">
-                      {chatItem.message}
-                    </p>
-                    <p className="small me-3 mb-3 rounded-3 text-muted">
-                      {formatDateTime(chatItem.createdAt)}
-                    </p>
-                  </div>
-                  <img
-                    src={Authuser.url}
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "100%", borderRadius: '50%' }}
-                  />
-                </div>
-              ) : (
-             
-                <div key={chatItem.id} className="d-flex flex-row justify-content-start">
-                  "jjjjjjjjjjjjjjjjjjjj"
-                  <img
-                    src={userdata.url}
-                    alt="avatar 1"
-                    style={{ width: "45px", height: "100%", borderRadius: '50%' }}
-                  />
-                  <div>
-                    <p
-                      className="small p-2 ms-3 mb-1 rounded-3"
-                      style={{ backgroundColor: "#f5f6f7" }}
-                    >
-                      {chatItem.message}
-                    </p>
-                    <p className="small ms-3 mb-3 rounded-3 text-muted float-end">
-                      {formatDateTime(chatItem.createdAt)}
-                    </p>
-                  </div>
-                </div>
-              )
-            ))
-          ) : (
-            "send messages to start the conversation"
-          )
-        } */}
       </div>
 
       <div className="text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">

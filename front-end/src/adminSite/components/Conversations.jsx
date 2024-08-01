@@ -83,19 +83,7 @@ export const Conversations = () => {
           <div style={{ overflowY: 'scroll', position: "relative", height: "470px" }}
           >
             <MDBTypography listUnStyled className="mb-0">
-              {/* section 1 */}
-              {/* <Conversations /> */}
-
-
-
-
-
-
               <div className=' px-2 flex flex-col overflow-auto'>
-
-
-
-
               {usersToDisplay.length > 0 ? (
         usersToDisplay.map((user) => (
           <div
