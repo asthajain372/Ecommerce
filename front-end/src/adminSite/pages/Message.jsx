@@ -95,18 +95,18 @@ const Message = () => {
                                     <MDBCard id="chat3" style={{ borderRadius: "15px" }}>
                                         <MDBCardBody>
                                             <MDBRow>
-                                                <MDBCol md="6" lg="5" xl="5" className="mb-4 mb-md-0 p-0">
+                                                {/* <MDBCol md="6" lg="5" xl="5" className="mb-4 mb-md-0 p-0">
                                                     <div className="p-3">
                                                         <div style={{ overflowY: 'scroll', position: "relative", height: "500px" }}
                                                         >
-                                                            <MDBTypography listUnStyled className="mb-0">
+                                                            <MDBTypography listUnStyled className="mb-0"> */}
                                                                 {/* section 1 */}
                                                                 <Conversations />
 
-                                                            </MDBTypography>
+                                                            {/* </MDBTypography>
                                                         </div>
                                                     </div>
-                                                </MDBCol>
+                                                </MDBCol> */}
                                                 <MDBCol md="6" lg="7" xl="7" className='p-0'  >
                                                     {/* section 2 */}
                                                     {!selectedchat ? (

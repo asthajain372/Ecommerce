@@ -40,6 +40,7 @@ const Header = () => {
       <header id="header" className="header fixed-top d-flex align-items-center">
         <div className="d-flex align-items-center justify-content-between">
           <Link style={{ textDecoration: 'none' }} to='/admin/Dashboard' className="logo d-flex align-items-center">
+          {/* <img src="assets/img/shopping.png" className='pb-1' alt /> */}
             <span className="d-none d-lg-block">Prime Mart </span>
           </Link>
 
@@ -173,6 +174,15 @@ const Header = () => {
                 <span>Messages</span>
               </Link>
             </li>
+
+            <li className="nav-item">
+            <Link to='/product' className="nav-link collapsed">
+              <i className="bi bi-box-arrow-in-right" />
+              <span>Visit Front site </span>
+            </Link>
+          </li>
+
+
           </div>
         </ul>
       </aside>

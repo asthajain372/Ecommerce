@@ -119,12 +119,20 @@ const Cartpage = () => {
                                 </div>
                             ))}
 
-                            <div className="d-flex justify-content-end pb-4">
+                            {/* <div className="d-flex justify-content-end pb-4">
                                 <Link to='/product'>
                                     <button type="button" className="btn btn-light btn-lg me-2" >Continue shopping</button>
                                 </Link>
                                 <Payment />
+                            </div> */}
+
+                            <div className="d-flex flex-column flex-md-row justify-content-end pb-4 ">
+                                <Link to='/product'>
+                                    <button type="button" className="btn btn-light btn-lg me-2">Continue shopping</button>
+                                </Link>
+                                <Payment />
                             </div>
+
                         </div>
                     )
                     :
